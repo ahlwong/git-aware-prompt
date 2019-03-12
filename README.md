@@ -31,7 +31,7 @@ Clone the project to a `.bash` folder in your home directory:
 ```bash
 mkdir ~/.bash
 cd ~/.bash
-git clone git://github.com/jimeh/git-aware-prompt.git
+git clone git://github.com/ahlwong/git-aware-prompt.git
 ```
 
 Edit your `~/.bash_profile` or `~/.profile` or `~/.bashrc` (for Ubuntu) and add the following to the top:
@@ -65,14 +65,14 @@ end of the same file you pasted the installation code into earlier.
 #### Mac OS X
 
 ```bash
-export PS1="\u@\h \W \[\$txtcyn\]\$git_branch\[\$txtred\]\$git_dirty\[\$txtrst\]\$ "
+export PS1='\u@\h:\w `git_prompt_status`'
 ```
 
 Optionally, if you want a nice pretty prompt when using `sudo -s`, also add
 this line:
 
 ```bash
-export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
+export SUDO_PS1='\u@\h:\w `git_prompt_status`'
 ```
 
 
@@ -81,19 +81,13 @@ export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
 Standard:
 
 ```bash
-export PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+export PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w \$(git_prompt_status)\$ "
 ```
 
 Colorized:
 
 ```bash
-export PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
-```
-
-#### Windows
-
-```bash
-export PS1="\[\033]0;$MSYSTEM:\w\007\033[32m\]\u@\h:\[\033[33m\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\033[0m\]\$ "
+export PS1=PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \$(git_prompt_status)\$ "
 ```
 
 ## Updating
