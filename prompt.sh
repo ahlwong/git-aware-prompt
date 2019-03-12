@@ -1,11 +1,16 @@
-parse_git_branch() { 
-  BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`;
-  if [ ! "${BRANCH}" == "" ]; then
-    STAT=`parse_git_dirty`;
-    echo "${txtcyn}[${BRANCH}${txtpur}${STAT}${txtcyn}]${txtrst}";
+git_prompt_status() {
+  local branch=`parse_git_branch`;
+  local dirty=`parse_git_dirty`;
+  if [ ! "${branch}" == "" ]; then
+    echo -e "\001${txtcyn}\002[${branch}\001${txtpur}\002${dirty}\001${txtcyn}\002]\001${txtrst}\002";
   else
     echo "";
   fi
+}
+
+parse_git_branch() { 
+  local branch=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`;
+  echo "${branch}";
 }
 
 parse_git_dirty() { 
@@ -42,7 +47,7 @@ parse_git_dirty() {
   fi
 }
 
-# export PS1='\u@\h:\w \[`parse_git_branch`\] '
+# export PS1='\u@\h:\w `git_prompt_status` '
 
 # PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
 
