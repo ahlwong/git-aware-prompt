@@ -2,7 +2,17 @@ git_prompt_status() {
   local branch=`parse_git_branch`;
   local dirty=`parse_git_dirty`;
   if [ ! "${branch}" == "" ]; then
-    echo -e "\001${txtcyn}\002[${branch}\001${txtpur}\002${dirty}\001${txtcyn}\002]\001${txtrst}\002 ";
+    echo -e "[${branch}${dirty}] ";
+  else
+    echo "";
+  fi
+}
+
+git_prompt_status_colored() {
+  local branch=`parse_git_branch`;
+  local dirty=`parse_git_dirty`;
+  if [ ! "${branch}" == "" ]; then
+    echo -e "\x01${txtcyn}\x02[${branch}\x01${txtpur}\x02${dirty}\x01${txtcyn}\x02]\x01${txtrst}\x02 ";
   else
     echo "";
   fi
