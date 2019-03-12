@@ -2,7 +2,7 @@ git_prompt_status() {
   local branch=`parse_git_branch`;
   local dirty=`parse_git_dirty`;
   if [ ! "${branch}" == "" ]; then
-    echo -e "\001${txtcyn}\002[${branch}\001${txtpur}\002${dirty}\001${txtcyn}\002]\001${txtrst}\002";
+    echo -e "\001${txtcyn}\002[${branch}\001${txtpur}\002${dirty}\001${txtcyn}\002]\001${txtrst}\002 ";
   else
     echo "";
   fi
@@ -47,15 +47,12 @@ parse_git_dirty() {
   fi
 }
 
-# export PS1='\u@\h:\w `git_prompt_status` '
+# OSX
+# export PS1='\u@\h:\w `git_prompt_status`'
 
-# PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
-
-# Default Git enabled prompt with dirty state
-# export PS1="\u@\h \w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
-
-# Another variant:
-# export PS1="\[$bldgrn\]\u@\h\[$txtrst\] \w \[$bldylw\]\$git_branch\[$txtcyn\]\$git_dirty\[$txtrst\]\$ "
-
-# Default Git enabled root prompt (for use with "sudo -s")
-# export SUDO_PS1="\[$bakred\]\u@\h\[$txtrst\] \w\$ "
+# Ubuntu
+# if [ "$color_prompt" = yes ]; then
+#   PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \$(git_prompt_status)\$ "
+# else
+#   PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w \$(git_prompt_status)\$ "
+# fi
